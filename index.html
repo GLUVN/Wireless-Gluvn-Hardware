@@ -6,50 +6,485 @@
 
     <title>GLUVN — Wireless Musical Glove</title>
 
+    <meta
+        name="description"
+        content="GLUVN is a wearable wireless musical instrument using finger position, pressure and hand orientation."
+    >
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <h1>GLUVN</h1>
+<header class="nav">
+    <div class="container nav-inner">
+        <a class="logo" href="#top">GLUVN</a>
 
-    <h2>A wireless wearable musical instrument</h2>
+        <nav class="nav-links">
+            <a href="#hardware">Hardware</a>
+            <a href="#architecture">Architecture</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#files">Files</a>
+        </nav>
+    </div>
+</header>
 
-    <p>
-        GLUVN turns finger movement, pressure and hand orientation
-        into real-time musical control.
-    </p>
 
-    <h2>The Hardware</h2>
+<main id="top">
 
-    <p>
-        Each glove uses:
-    </p>
+    <!-- HERO -->
 
-    <ul>
-        <li>5 flex sensors</li>
-        <li>5 force-sensitive resistors (FSRs)</li>
-        <li>MPU-6886 IMU</li>
-        <li>M5StickC Plus 1.1 / ESP32</li>
-        <li>Bluetooth Low Energy</li>
-    </ul>
+    <section class="hero">
+        <div class="container hero-grid">
 
-    <p>
-        A CD4067 analog multiplexer allows the ten analog sensors
-        to share a single ADC input.
-    </p>
+            <div>
+                <span class="eyebrow">Wearable Musical Interface</span>
 
-    <h2>Open Hardware</h2>
+                <h1>GLUVN</h1>
 
-    <p>
-        The complete hardware design is publicly available.
-    </p>
+                <h2>
+                    A wireless musical instrument built around the hand.
+                </h2>
 
-    <p>
-        <a href="https://github.com/helenejabbour/Wireless-Gluvn-Hardware">
-            View the hardware repository
-        </a>
-    </p>
+                <p>
+                    Finger position, finger pressure and hand orientation
+                    become expressive inputs for real-time musical control.
+                </p>
+
+                <div class="buttons">
+                    <a
+                        class="button button-primary"
+                        href="https://github.com/helenejabbour/Wireless-Gluvn-Hardware"
+                        target="_blank"
+                    >
+                        Explore the hardware
+                    </a>
+
+                    <a class="button button-secondary" href="#files">
+                        Get the files
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <img
+                    src="https://raw.githubusercontent.com/helenejabbour/Wireless-Gluvn-Hardware/main/images/Full%20setup/Full_assembly.jpg"
+                    alt="GLUVN wearable musical glove"
+                >
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- HARDWARE -->
+
+    <section id="hardware">
+        <div class="container">
+
+            <div class="section-head">
+                <span class="section-kicker">The hardware</span>
+
+                <h2>
+                    Ten analog sensors. One compact wearable platform.
+                </h2>
+
+                <p>
+                    Each glove combines five flex sensors, five force-sensitive
+                    resistors and the IMU inside an M5StickC Plus 1.1.
+                    The custom PCB was designed to keep the system compact
+                    while providing a practical sensor interface.
+                </p>
+            </div>
+
+            <div class="stats">
+
+                <div class="stat">
+                    <strong>5</strong>
+                    <span>Flex sensors</span>
+                </div>
+
+                <div class="stat">
+                    <strong>5</strong>
+                    <span>FSR pressure sensors</span>
+                </div>
+
+                <div class="stat">
+                    <strong>1</strong>
+                    <span>CD4067 multiplexer</span>
+                </div>
+
+                <div class="stat">
+                    <strong>BLE</strong>
+                    <span>Wireless data link</span>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ARCHITECTURE -->
+
+    <section id="architecture">
+        <div class="container">
+
+            <div class="section-head">
+                <span class="section-kicker">Architecture</span>
+
+                <h2>
+                    Why the custom PCB?
+                </h2>
+
+                <p>
+                    The ESP32 does not provide enough convenient ADC inputs
+                    for ten analog sensors, so GLUVN uses a CD4067 analog
+                    multiplexer to bring the sensor set into a single ADC
+                    channel.
+                </p>
+            </div>
+
+
+            <div class="architecture">
+
+                <div class="architecture-card">
+
+                    <h3>Signal path</h3>
+
+                    <div class="architecture-flow">5 × Flex sensors
+        +
+5 × FSR pressure sensors
+        │
+        ▼
+Analog signal conditioning
+        │
+        ▼
+CD4067 multiplexer
+        │
+        ▼
+Single ADC input
+        │
+        ▼
+M5StickC Plus 1.1
+ESP32 + IMU + BLE
+        │
+        ▼
+GLUVN software
+        │
+        ▼
+MIDI</div>
+
+                </div>
+
+
+                <div class="feature-stack">
+
+                    <div class="feature-card">
+                        <h3>Separate filtering</h3>
+
+                        <p>
+                            Flex and pressure sensors use different RC
+                            conditioning so the analog front-end matches
+                            their different response requirements.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3>Compact design</h3>
+
+                        <p>
+                            The custom board keeps the sensor interface close
+                            to the M5Stick while reducing wiring and GPIO
+                            requirements.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3>Designed for interaction</h3>
+
+                        <p>
+                            The hardware is intended for real-time musical
+                            interaction rather than simply collecting sensor
+                            data.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- PCB -->
+
+    <section>
+        <div class="container">
+
+            <div class="section-head">
+                <span class="section-kicker">Custom electronics</span>
+
+                <h2>
+                    From schematic to finished board.
+                </h2>
+
+                <p>
+                    The complete hardware design is documented, including
+                    the schematic, PCB layout, 3D board model and
+                    manufacturing outputs.
+                </p>
+            </div>
+
+            <div class="gallery-large">
+
+                <img
+                    src="https://raw.githubusercontent.com/helenejabbour/Wireless-Gluvn-Hardware/main/images/PCB/Final_PCB_Top.jpg"
+                    alt="Finished GLUVN PCB"
+                >
+
+                <div class="gallery-right">
+
+                    <img
+                        src="https://raw.githubusercontent.com/helenejabbour/Wireless-Gluvn-Hardware/main/images/PCB/3D-Render-Top.png"
+                        alt="GLUVN PCB 3D render"
+                    >
+
+                    <img
+                        src="https://raw.githubusercontent.com/helenejabbour/Wireless-Gluvn-Hardware/main/images/PCB/Schematic.png"
+                        alt="GLUVN electronics schematic"
+                    >
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ENCLOSURE -->
+
+    <section>
+        <div class="container">
+
+            <div class="section-head">
+                <span class="section-kicker">Mechanical design</span>
+
+                <h2>
+                    The electronics live inside a custom enclosure.
+                </h2>
+
+                <p>
+                    The PCB and M5Stick assembly were designed alongside the
+                    enclosure so the electronics could remain compact enough
+                    for wearable use.
+                </p>
+            </div>
+
+            <div class="gallery-large">
+
+                <img
+                    src="https://raw.githubusercontent.com/helenejabbour/Wireless-Gluvn-Hardware/main/images/Enclosure_box/Printed%20box%20Top.jpg"
+                    alt="GLUVN enclosure"
+                >
+
+                <div class="gallery-right">
+
+                    <img
+                        src="https://raw.githubusercontent.com/helenejabbour/Wireless-Gluvn-Hardware/main/images/Enclosure_box/Enclosure_Assembly_Top.png"
+                        alt="GLUVN enclosure assembly"
+                    >
+
+                    <img
+                        src="https://raw.githubusercontent.com/helenejabbour/Wireless-Gluvn-Hardware/main/images/Enclosure_box/Enclosure_Assembly_Bottom.png"
+                        alt="GLUVN enclosure bottom assembly"
+                    >
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- FULL SYSTEM -->
+
+    <section id="gallery">
+        <div class="container">
+
+            <div class="section-head">
+                <span class="section-kicker">The result</span>
+
+                <h2>
+                    Hardware you can actually put on your hands.
+                </h2>
+
+                <p>
+                    The current hardware release includes the finished glove,
+                    sensor integration, enclosure and electronics together
+                    as one wearable platform.
+                </p>
+            </div>
+
+            <div class="gallery-large">
+
+                <img
+                    src="https://raw.githubusercontent.com/helenejabbour/Wireless-Gluvn-Hardware/main/images/Full%20setup/Both%20hands.jpg"
+                    alt="Both GLUVN gloves"
+                >
+
+                <div class="gallery-right">
+
+                    <img
+                        src="https://raw.githubusercontent.com/helenejabbour/Wireless-Gluvn-Hardware/main/images/Full%20setup/Glove_exterior.jpg"
+                        alt="GLUVN glove exterior"
+                    >
+
+                    <img
+                        src="https://raw.githubusercontent.com/helenejabbour/Wireless-Gluvn-Hardware/main/images/Full%20setup/Glove_interior.jpg"
+                        alt="GLUVN glove interior"
+                    >
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- FILES -->
+
+    <section id="files">
+        <div class="container">
+
+            <div class="section-head">
+                <span class="section-kicker">Open hardware</span>
+
+                <h2>
+                    Everything you need to inspect the design.
+                </h2>
+
+                <p>
+                    The hardware repository contains the design and
+                    manufacturing material rather than just a few renders.
+                </p>
+            </div>
+
+            <div class="file-grid">
+
+                <div class="file-card">
+                    <h3>PCB & schematic</h3>
+
+                    <p>
+                        Schematic, PCB files, board layers and 3D design.
+                    </p>
+
+                    <a
+                        href="https://github.com/helenejabbour/Wireless-Gluvn-Hardware/tree/main/pcb"
+                        target="_blank"
+                    >
+                        View electronics →
+                    </a>
+                </div>
+
+                <div class="file-card">
+                    <h3>Manufacturing</h3>
+
+                    <p>
+                        CAM outputs and files prepared for fabrication.
+                    </p>
+
+                    <a
+                        href="https://github.com/helenejabbour/Wireless-Gluvn-Hardware/tree/main/pcb/CAMOutputs"
+                        target="_blank"
+                    >
+                        View manufacturing files →
+                    </a>
+                </div>
+
+                <div class="file-card">
+                    <h3>Enclosure</h3>
+
+                    <p>
+                        3MF, Fusion assembly and enclosure drawings.
+                    </p>
+
+                    <a
+                        href="https://github.com/helenejabbour/Wireless-Gluvn-Hardware/tree/main/enclosure_box"
+                        target="_blank"
+                    >
+                        View enclosure files →
+                    </a>
+                </div>
+
+                <div class="file-card">
+                    <h3>Documentation</h3>
+
+                    <p>
+                        Design documentation, sensor mapping and datasheets.
+                    </p>
+
+                    <a
+                        href="https://github.com/helenejabbour/Wireless-Gluvn-Hardware/tree/main/docs"
+                        target="_blank"
+                    >
+                        View documentation →
+                    </a>
+                </div>
+
+                <div class="file-card">
+                    <h3>Hardware images</h3>
+
+                    <p>
+                        PCB, enclosure and complete-system photos and renders.
+                    </p>
+
+                    <a
+                        href="https://github.com/helenejabbour/Wireless-Gluvn-Hardware/tree/main/images"
+                        target="_blank"
+                    >
+                        Browse images →
+                    </a>
+                </div>
+
+                <div class="file-card">
+                    <h3>Full source</h3>
+
+                    <p>
+                        Explore the complete public hardware repository.
+                    </p>
+
+                    <a
+                        href="https://github.com/helenejabbour/Wireless-Gluvn-Hardware"
+                        target="_blank"
+                    >
+                        Open repository →
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+
+<footer>
+    <div class="container footer-inner">
+
+        <div class="footer-name">GLUVN</div>
+
+        <div>
+            Open hardware for a wearable musical interface.
+        </div>
+
+    </div>
+</footer>
 
 </body>
 </html>
