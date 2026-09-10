@@ -136,7 +136,7 @@ img {
 }
 
 .hero-image img {
-    max-height: 350px;
+    max-height: 230px;
     object-fit: cover;
     object-position: center;
     background: var(--panel);
