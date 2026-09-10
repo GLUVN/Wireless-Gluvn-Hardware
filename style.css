@@ -136,8 +136,9 @@ img {
 }
 
 .hero-image img {
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
+    max-height: 560px;
+    object-fit: contain;
+    background: var(--panel);
 }
 
 /* Buttons */
@@ -296,9 +297,10 @@ section {
 
 .gallery-large img,
 .gallery-small img {
-    height: 100%;
-    min-height: 280px;
-    object-fit: cover;
+    width: 100%;
+    max-height: 360px;
+    object-fit: contain;
+    background: var(--panel);
     border-radius: 18px;
     border: 1px solid var(--line);
 }
